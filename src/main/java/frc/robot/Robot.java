@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.littletonrobotics.junction.*;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
 
+import com.ctre.phoenix6.SignalLogger;
+
 // import frc.lib.frc1731.EventLogWriter;
 
 import com.pathplanner.lib.commands.*;
@@ -39,7 +41,7 @@ import frc.robot.subsystems.swerve.*;
 public class Robot extends TimedRobot {
   private final RobotContainer container;
   private final AutoLoader autoLoader;
-  private final PitTelemetry pitTelemetry;
+  // private final PitTelemetry pitTelemetry;
   
   public static SwerveSubsystem swerve;
   public static IntakeDeploySubsystem intakedeploy;
@@ -83,9 +85,9 @@ public class Robot extends TimedRobot {
     autoLoader = new AutoLoader();
 
     initLogging();
-    DataLogManager.start();
-    DriverStation.startDataLog(DataLogManager.getLog());
-    pitTelemetry = new PitTelemetry();
+    // DataLogManager.start();
+    // DriverStation.startDataLog(DataLogManager.getLog());
+    // pitTelemetry = new PitTelemetry();
     Pathfinding.setPathfinder(new LocalADStarAK());
     CommandScheduler.getInstance().schedule(PathfindingCommand.warmupCommand());
     CommandScheduler.getInstance().schedule(FollowPathCommand.warmupCommand());
@@ -139,6 +141,9 @@ public class Robot extends TimedRobot {
     //   Logger.start();
     // }
 
+    // SignalLogger.enableAutoLogging(false);
+    // SignalLogger.stop();
+    // DataLogManager.start();
     SmartDashboard.updateValues();
     DriverStation.silenceJoystickConnectionWarning(true);
   }
@@ -194,7 +199,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     GameState.logValues();
     container.periodic();
-    pitTelemetry.update();
+    // pitTelemetry.update();
   }
 
   @Override

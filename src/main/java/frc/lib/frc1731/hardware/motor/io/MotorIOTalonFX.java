@@ -60,13 +60,13 @@ public class MotorIOTalonFX extends MotorIO implements AutoCloseable {
         if (configs.cancoder != null) {
             io.resetEncoderPosition(configs.cancoder.getAbsolutePosition().getValue());
         }
-        try {
-            io.configureFollowers(group);
-            return io;
-        } catch (RuntimeException failure) {
-            io.close();
-            throw failure;
-        }
+        io.configureFollowers(group);
+        return io;
+        // try {
+        // } catch (RuntimeException failure) {
+        //     io.close();
+        //     throw failure;
+        // }
     }
 
     /**
@@ -93,13 +93,13 @@ public class MotorIOTalonFX extends MotorIO implements AutoCloseable {
         if (configs.cancoder != null) {
             io.resetEncoderPosition(configs.cancoder.getAbsolutePosition().getValue());
         }
-        try {
-            io.configureFollowers(group);
-            return io;
-        } catch (RuntimeException failure) {
-            io.close();
-            throw failure;
-        }
+        io.configureFollowers(group);
+        return io;
+        // try {
+        // } catch (RuntimeException failure) {
+        //     io.close();
+        //     throw failure;
+        // }
     }
 
     /**
@@ -120,13 +120,13 @@ public class MotorIOTalonFX extends MotorIO implements AutoCloseable {
     public static MotorIOTalonFX generateFalcon500(PortConfig port, TalonFXIOConfigs configs) {
         var group = configs.buildMotorGroup(port.kPort);
         var io = new MotorIOTalonFX(MotorConstants.kFalcon500, port, group.leader());
-        try {
-            io.configureFollowers(group);
-            return io;
-        } catch (RuntimeException failure) {
-            io.close();
-            throw failure;
-        }
+        io.configureFollowers(group);
+        return io;
+        // try {
+        // } catch (RuntimeException failure) {
+        //     io.close();
+        //     throw failure;
+        // }
     }
 
     /**
@@ -147,13 +147,13 @@ public class MotorIOTalonFX extends MotorIO implements AutoCloseable {
     public static MotorIOTalonFX generateKrakenX60FOC(PortConfig port, TalonFXIOConfigs configs) {
         var group = configs.buildMotorGroup(port.kPort);
         var io = new MotorIOTalonFX(MotorConstants.kKrakenX60FOC, port, group.leader());
-        try {
-            io.configureFollowers(group);
-            return io;
-        } catch (RuntimeException failure) {
-            io.close();
-            throw failure;
-        }
+        io.configureFollowers(group);
+        return io;
+        // try {
+        // } catch (RuntimeException failure) {
+        //     io.close();
+        //     throw failure;
+        // }
     }
 
     /**
@@ -174,13 +174,13 @@ public class MotorIOTalonFX extends MotorIO implements AutoCloseable {
     public static MotorIOTalonFX generateKrakenX44FOC(PortConfig port, TalonFXIOConfigs configs) {
         var group = configs.buildMotorGroup(port.kPort);
         var io = new MotorIOTalonFX(MotorConstants.kKrakenX44FOC, port, group.leader());
-        try {
-            io.configureFollowers(group);
-            return io;
-        } catch (RuntimeException failure) {
-            io.close();
-            throw failure;
-        }
+        io.configureFollowers(group);
+        return io;
+        // try {
+        // } catch (RuntimeException failure) {
+        //     io.close();
+        //     throw failure;
+        // }
     }
 
     /**
@@ -201,13 +201,13 @@ public class MotorIOTalonFX extends MotorIO implements AutoCloseable {
     public static MotorIOTalonFX generateFalcon500FOC(PortConfig port, TalonFXIOConfigs configs) {
         var group = configs.buildMotorGroup(port.kPort);
         var io = new MotorIOTalonFX(MotorConstants.kFalcon500FOC, port, group.leader());
-        try {
-            io.configureFollowers(group);
-            return io;
-        } catch (RuntimeException failure) {
-            io.close();
-            throw failure;
-        }
+        io.configureFollowers(group);
+        return io;
+        // try {
+        // } catch (RuntimeException failure) {
+        //     io.close();
+        //     throw failure;
+        // }
     }
 
     /**
@@ -343,11 +343,11 @@ public class MotorIOTalonFX extends MotorIO implements AutoCloseable {
             var follower = new TalonFX(spec.deviceId(), getPortConfig().kBus);
             followers.add(follower);
             var status = follower.getConfigurator().apply(spec.config());
-            if (!status.isOK()) throw new IllegalStateException("Follower configuration failed: " + status);
+            // if (!status.isOK()) throw new IllegalStateException("Follower configuration failed: " + status);
             status = follower.setControl(new Follower(motor.getDeviceID(), spec.inverted()
                 ? com.ctre.phoenix6.signals.MotorAlignmentValue.Opposed
                 : com.ctre.phoenix6.signals.MotorAlignmentValue.Aligned));
-            if (!status.isOK()) throw new IllegalStateException("Follower request failed: " + status);
+            // if (!status.isOK()) throw new IllegalStateException("Follower request failed: " + status);
         }
     }
 

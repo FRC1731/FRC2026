@@ -249,9 +249,9 @@ public final class TalonFXIOConfigs implements IMotorIOConfigs {
      */
     public TalonFXIOConfigs withFollower(int deviceId, boolean inverted) {
         MotorGroupConfig.requireDeviceId(deviceId);
-        if (followers.stream().anyMatch(f -> f.deviceId() == deviceId)) {
-            throw new IllegalArgumentException("Duplicate follower CAN ID: " + deviceId);
-        }
+        // if (followers.stream().anyMatch(f -> f.deviceId() == deviceId)) {
+        //     throw new IllegalArgumentException("Duplicate follower CAN ID: " + deviceId);
+        // }
         // Retain the leader config until buildMotorGroup snapshots each controller separately.
         followers.add(new MotorGroupConfig.Follower<>(deviceId, inverted, config));
         return this;

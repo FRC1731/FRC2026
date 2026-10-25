@@ -20,11 +20,11 @@ import frc.robot.Ports;
 public final class IndexerConstants {
     public static final double kGearRatio = 3.0;
 
-    public static final AngularVelocity kFeedVelocity = RotationsPerSecond.of(60);
+    public static final AngularVelocity kFeedVelocity = RotationsPerSecond.of(80);
     public static final AngularVelocity kSpitVelocity = RotationsPerSecond.of(-60);
     public static final AngularVelocity kEpsilon = RotationsPerSecond.one();
 
-    public static final double kSupplyCurrentLimit = 30.0;
+    public static final double kSupplyCurrentLimit = 40.0;
     public static final double kStatorCurrentLimit = 100.0;
 
     public static final Distance kRollerDiameter = Inches.of(1.398);

@@ -19,7 +19,7 @@ public class IntakeDeploySubsystem extends BaseServoSubsystem<MotorIOTalonFX> {
         inputs.setpointPosition = getSetpoint().in(Rotations);
         inputs.deployed = getSetpoint().gt(IntakeDeployConstants.kHomeAngle); // Extended is less than zero so less than
         logger.processInputs(inputs);
-        RobotState.updateIntake(getPosition());
+        // RobotState.updateIntake(getPosition());
     }
 
     public Command home() {

@@ -45,25 +45,25 @@ public final class RobotState {
     }
 
     /** Called by swerve with its existing cached state, on the scheduler thread. */
-    public static void updateDrive(Pose2d pose) {
-        Objects.requireNonNull(pose);
-        robotPose = pose;
-    }
+    // public static void updateDrive(Pose2d pose) {
+    //     Objects.requireNonNull(pose);
+    //     robotPose = pose;
+    // }
 
-    public static void updateHood(Angle angle) {
-        Objects.requireNonNull(angle);
-        hoodAngle = angle;
-    }
+    // public static void updateHood(Angle angle) {
+    //     Objects.requireNonNull(angle);
+    //     hoodAngle = angle;
+    // }
 
-    public static void updateIntake(Angle angle) {
-        Objects.requireNonNull(angle);
-        intakeDeployAngle = angle;
-    }
+    // public static void updateIntake(Angle angle) {
+    //     Objects.requireNonNull(angle);
+    //     intakeDeployAngle = angle;
+    // }
 
-    public static void updateHopper(Distance height) {
-        Objects.requireNonNull(height);
-        squeezerHeight = height;
-    }
+    // public static void updateHopper(Distance height) {
+    //     Objects.requireNonNull(height);
+    //     squeezerHeight = height;
+    // }
 
     public static RobotVisualization createMechViz() {
         return RobotVisualizer.builder(RobotConstants.kRobotName)

@@ -1,7 +1,9 @@
 package frc.robot.subsystems.hopper;
 
 import static edu.wpi.first.units.Units.Inches;
+import static edu.wpi.first.units.Units.Rotations;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.lib.frc1731.hardware.motor.io.MotorIOSparkMax;
 import frc.lib.frc1731.hardware.motor.io.request.PositionRequest;
@@ -20,14 +22,20 @@ public class HopperSubsystem extends BaseServoSubsystem<MotorIOSparkMax> {
         inputs.setpointHeight = HopperConstants.kConverter.toDistance(getSetpoint()).in(Inches);
         inputs.hopperExtended = HopperConstants.kConverter.toDistance(getSetpoint()).equals(HopperConstants.kMaxHeight);
         logger.processInputs(inputs);
-        RobotState.updateHopper(Inches.of(inputs.currentHeight));
+        // RobotState.updateHopper(Inches.of(inputs.currentHeight));
+
+        SmartDashboard.putNumber("Current Rotations", getPosition().in(Rotations));
+    }
+
+    public void collapseHopper() {
+        this.getMotor().setPosition(Rotations.zero(), 0);
     }
 
     public Command extend() {
-        return applyRequest(new PositionRequest(HopperConstants.kConverter.toAngle(HopperConstants.kMaxHeight)));
+        return applyRequest(new PositionRequest(Rotations.of(45)));
     }
 
     public Command collapse() {
-        return applyRequest(new PositionRequest(HopperConstants.kConverter.toAngle(HopperConstants.kHomeHeight)));
+        return applyRequest(new PositionRequest(Rotations.of(0)));
     }
 }

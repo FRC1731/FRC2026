@@ -3,7 +3,6 @@ package frc.robot;
 import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.wpilibj2.command.*;
-import frc.lib.frc1678.mechviz.RobotVisualizer;
 import frc.robot.subsystems.Superstructure;
 
 /**
@@ -14,12 +13,12 @@ import frc.robot.subsystems.Superstructure;
  */
 public class RobotContainer {
   private Superstructure superstructure;
-  private RobotVisualizer visualizer;
+  // private RobotVisualizer visualizer;
 
   public RobotContainer() {
     superstructure = new Superstructure();
-    visualizer = RobotState.createMechViz();
-    visualizer.init();
+    // visualizer = RobotState.createMechViz();
+    // visualizer.init();
     Controls.build();
 
     NamedCommands.registerCommand("StopShoot", superstructure.stopShoot());
@@ -27,6 +26,9 @@ public class RobotContainer {
     NamedCommands.registerCommand("Warmup", superstructure.warmupWithHood());
     NamedCommands.registerCommand("Shoot", superstructure.autoShoot().withTimeout(3.0));
     NamedCommands.registerCommand("TargetLock", superstructure.lockSwerveToHub());
+
+    // NamedCommands.registerCommand("RaiseSqueezer", Robot.hopper.extend());
+    // NamedCommands.registerCommand("LowerSqueezer", Robot.hopper.collapse()); 
 
     Controls.resetSwerve
       .onTrue(new InstantCommand(() -> Robot.swerve.resetTelePose()));
@@ -90,13 +92,14 @@ public class RobotContainer {
         Robot.intakedeploy.home()
           .alongWith(Robot.hopper.collapse()));
 
-    Controls.raiseHopper.onTrue(Robot.hopper.extend());
+    Controls.spit.whileTrue(superstructure.spit());
 
+    Controls.raiseHopper.onTrue(Robot.hopper.extend());
     Controls.lowerHopper.onTrue(Robot.hopper.collapse());
   }
 
   public void periodic() {
     superstructure.periodic();
-    visualizer.loop();
+    // visualizer.loop();
   }
 }

@@ -28,6 +28,8 @@ public class Controls {
     public static Trigger pass = driver.rightBumper();
     public static Trigger collapseIntake = driver.dpadUp();
 
+    public static Trigger spit = driver.y();
+
     public static Trigger shotFeedthrough = intake.and(shoot);
     public static Trigger passFeedthrough = intake.and(pass);
 

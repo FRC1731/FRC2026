@@ -25,7 +25,7 @@ public class HoodSubsystem extends BaseServoSubsystem<MotorIOTalonFXS> {
         inputs.setpointRotations = getSetpoint().in(Rotations);
         inputs.atSetpoint = atSetpoint();
         logger.processInputs(inputs);
-        RobotState.updateHood(getPosition());
+        // RobotState.updateHood(getPosition());
     }
     
     public Command setAngle(Supplier<Angle> setpoint) {

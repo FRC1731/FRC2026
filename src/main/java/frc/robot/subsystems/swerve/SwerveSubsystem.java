@@ -199,7 +199,7 @@ public class SwerveSubsystem extends BaseSubsystem {
     @Override
     public void periodicTelemetry() {
         this.state = this.drivetrain.getState();
-        RobotState.updateDrive(state.Pose);
+        // RobotState.updateDrive(state.Pose);
         this.drivetrain.periodic();
         this.handler.periodic(
             getPose(),

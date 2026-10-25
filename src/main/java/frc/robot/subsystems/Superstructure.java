@@ -49,6 +49,10 @@ public class Superstructure {
     // Action commands
     // =========================================================================
 
+    public Command spit() {
+        return Robot.indexer.spit().alongWith(Robot.kicker.spit());
+    }
+
     public Command lockSwerveToHub() {
         return Robot.swerve.lockHeadingTarget(generator.kHubSupplier);
     }
@@ -81,8 +85,8 @@ public class Superstructure {
                 applyTargetHoodAndFlywheel(),
                 Commands.waitUntil(shotCondition).andThen(
                     new ParallelCommandGroup( // Only start the feeding and squeezing sequence after we are ready to shoot
-                        this.feed(),
-                        Commands.waitSeconds(1.5).andThen(Robot.hopper.collapse())
+                        this.feed()
+                        // Commands.waitSeconds(1.0).andThen(Robot.hopper.collapse())
                     )
                 ),
                 Commands.either( // If feedthrough continue intaking, otherwise jiggle
@@ -102,8 +106,8 @@ public class Superstructure {
             Commands.waitUntil(shotCondition).andThen(
                 new ParallelCommandGroup(
                     feed(),
-                    jiggleIntakeForShot(),
-                    Commands.waitSeconds(1.5).andThen(squeezeHopper())
+                    jiggleIntakeForShot()
+                    // Commands.waitSeconds(1.5).andThen(squeezeHopper())
                 )
             )
         );
@@ -122,8 +126,8 @@ public class Superstructure {
                 Commands.waitUntil(this::readyToShoot).andThen(
                     new ParallelCommandGroup( // Only start the feeding and squeezing sequence after we are ready to shoot
                         this.feed(),
-                        jiggleIntakeForShot(),
-                        Commands.waitSeconds(1.5).andThen(Robot.hopper.collapse())
+                        jiggleIntakeForShot()
+                        // Commands.waitSeconds(1.5).andThen(Robot.hopper.collapse())
                     )
                 )
             )
