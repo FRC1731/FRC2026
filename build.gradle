@@ -1,6 +1,7 @@
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2026.1.1"
+    id "com.peterabeles.gversion" version "1.10"
 }
 
 java {
@@ -67,6 +68,9 @@ dependencies {
     implementation "org.littletonrobotics.akit:akit-java:4.0.0"
     annotationProcessor "org.littletonrobotics.akit:akit-autolog:4.0.0"
 
+    implementation 'io.avaje:avaje-jsonb:3.2'
+    annotationProcessor 'io.avaje:avaje-jsonb-generator:3.2'
+
     roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
     roborioDebug wpi.java.vendor.jniDebug(wpi.platforms.roborio)
 
@@ -114,4 +118,15 @@ wpi.java.configureTestTasks(test)
 // Configure string concat to always inline compile
 tasks.withType(JavaCompile) {
     options.compilerArgs.add '-XDstringConcat=inline'
+}
+
+// Generate version file with build information
+project.compileJava.dependsOn(createVersionFile)
+gversion {
+  srcDir       = "src/main/java/"
+  classPackage = "frc.robot"
+  className    = "BuildConstants"
+  dateFormat   = "yyyy-MM-dd HH:mm:ss z"
+  timeZone     = "America/New_York"
+  indent       = "  "
 }
